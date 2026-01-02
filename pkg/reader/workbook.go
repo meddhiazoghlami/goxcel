@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // WorkbookReader is the main entry point for reading Excel files

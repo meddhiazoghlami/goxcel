@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // SQLDialect represents different SQL database dialects

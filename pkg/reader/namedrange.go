@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 
 	"github.com/xuri/excelize/v2"
 )

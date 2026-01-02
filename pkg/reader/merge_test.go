@@ -1,7 +1,7 @@
 package reader
 
 import (
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 	"testing"
 )
 

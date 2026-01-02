@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"goxcel/pkg/export"
-	"goxcel/pkg/models"
-	"goxcel/pkg/reader"
+	"github.com/meddhiazoghlami/goxcel/pkg/export"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/reader"
 )
 
 // CLI options

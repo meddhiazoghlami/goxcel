@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // HeaderDetector identifies header rows in tables

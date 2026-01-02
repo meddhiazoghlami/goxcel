@@ -2,8 +2,10 @@
 
 A lightweight, high-performance Go library for reading Excel files (.xlsx) with automatic table detection and intelligent data extraction.
 
-![Go Version](https://img.shields.io/badge/Go-1.25+-00ADD8?style=flat&logo=go)
-![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)
+[![Go Version](https://img.shields.io/badge/Go-1.21+-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![CI](https://github.com/meddhiazoghlami/goxcel/actions/workflows/ci.yml/badge.svg)](https://github.com/meddhiazoghlami/goxcel/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-95%25-brightgreen)](https://github.com/meddhiazoghlami/goxcel)
+[![Go Reference](https://pkg.go.dev/badge/github.com/meddhiazoghlami/goxcel.svg)](https://pkg.go.dev/github.com/meddhiazoghlami/goxcel)
 
 
 ## Overview
@@ -32,7 +34,7 @@ Goxcel automatically detects and extracts tabular data from Excel spreadsheets w
 ## Installation
 
 ```bash
-go get github.com/yourusername/goxcel
+go get github.com/meddhiazoghlami/goxcel
 ```
 
 ## Quick Start
@@ -44,7 +46,7 @@ package main
 
 import (
     "fmt"
-    "goxcel/pkg/reader"
+    "github.com/meddhiazoghlami/goxcel/pkg/reader"
 )
 
 func main() {
@@ -79,7 +81,7 @@ func main() {
 ### Export to JSON
 
 ```go
-import "goxcel/pkg/export"
+import "github.com/meddhiazoghlami/goxcel/pkg/export"
 
 // Simple export
 jsonStr, err := export.ToJSON(table)
@@ -96,7 +98,7 @@ result, err := exporter.ExportString(table)
 ### Export to CSV
 
 ```go
-import "goxcel/pkg/export"
+import "github.com/meddhiazoghlami/goxcel/pkg/export"
 
 // Simple export
 csvStr, err := export.ToCSV(table)
@@ -113,7 +115,7 @@ result, err := exporter.ExportString(table)
 ### Export to SQL
 
 ```go
-import "goxcel/pkg/export"
+import "github.com/meddhiazoghlami/goxcel/pkg/export"
 
 // Simple export
 sqlStr, err := export.ToSQL(table, "users")
@@ -132,7 +134,7 @@ result, err := exporter.ExportString(table)
 ### Excel Date Conversion
 
 ```go
-import "goxcel/pkg/dateutil"
+import "github.com/meddhiazoghlami/goxcel/pkg/dateutil"
 
 // Convert Excel serial date to Go time.Time
 // Serial 45658 = January 1, 2025
@@ -359,7 +361,7 @@ Excel date conversion utilities.
 Validate table data against defined rules.
 
 ```go
-import "goxcel/pkg/validation"
+import "github.com/meddhiazoghlami/goxcel/pkg/validation"
 
 // Using the fluent RuleBuilder API
 rules := []validation.ValidationRule{
@@ -399,7 +401,7 @@ byRow := result.ErrorsByRow()
 Read Excel named ranges directly as tables.
 
 ```go
-import "goxcel/pkg/reader"
+import "github.com/meddhiazoghlami/goxcel/pkg/reader"
 
 // Create a named range reader
 nr := reader.NewNamedRangeReader()

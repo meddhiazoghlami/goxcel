@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // Format represents the export format type

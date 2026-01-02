@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"testing"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // =============================================================================

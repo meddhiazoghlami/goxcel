@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"io"
 
-	"goxcel/pkg/models"
+	"github.com/meddhiazoghlami/goxcel/pkg/models"
 )
 
 // JSONOptions holds JSON-specific export options
