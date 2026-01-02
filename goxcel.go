@@ -34,6 +34,7 @@ import (
 	"github.com/meddhiazoghlami/goxcel/pkg/export"
 	"github.com/meddhiazoghlami/goxcel/pkg/models"
 	"github.com/meddhiazoghlami/goxcel/pkg/reader"
+	"github.com/meddhiazoghlami/goxcel/pkg/validation"
 )
 
 // Re-export core types for convenience
@@ -76,6 +77,27 @@ type (
 
 	// NamedRange represents an Excel named range
 	NamedRange = models.NamedRange
+
+	// Template represents an expected Excel file structure for validation
+	Template = validation.Template
+
+	// SheetSchema represents the expected schema for a sheet
+	SheetSchema = validation.SheetSchema
+
+	// TemplateResult contains the results of template validation
+	TemplateResult = validation.TemplateResult
+
+	// TemplateError represents a single validation error
+	TemplateError = validation.TemplateError
+
+	// TemplateErrorType represents the type of template validation error
+	TemplateErrorType = validation.TemplateErrorType
+
+	// TemplateBuilder provides a fluent API for building templates
+	TemplateBuilder = validation.TemplateBuilder
+
+	// SchemaBuilder provides a fluent API for building sheet schemas
+	SchemaBuilder = validation.SchemaBuilder
 )
 
 // Re-export CellType constants
@@ -86,6 +108,54 @@ const (
 	CellTypeDate    = models.CellTypeDate
 	CellTypeBool    = models.CellTypeBool
 	CellTypeFormula = models.CellTypeFormula
+)
+
+// Re-export TemplateErrorType constants for template validation
+const (
+	// ErrorMissingSheet indicates a required sheet is missing
+	ErrorMissingSheet = validation.ErrorMissingSheet
+
+	// ErrorUnexpectedSheet indicates an unexpected sheet was found (strict mode)
+	ErrorUnexpectedSheet = validation.ErrorUnexpectedSheet
+
+	// ErrorSheetCount indicates sheet count is outside allowed range
+	ErrorSheetCount = validation.ErrorSheetCount
+
+	// ErrorMissingTable indicates no tables were found in a sheet
+	ErrorMissingTable = validation.ErrorMissingTable
+
+	// ErrorMissingColumn indicates a required column is missing
+	ErrorMissingColumn = validation.ErrorMissingColumn
+
+	// ErrorUnexpectedColumn indicates an unexpected column was found (strict mode)
+	ErrorUnexpectedColumn = validation.ErrorUnexpectedColumn
+
+	// ErrorColumnOrder indicates columns are in wrong order
+	ErrorColumnOrder = validation.ErrorColumnOrder
+
+	// ErrorColumnType indicates a column has wrong data type
+	ErrorColumnType = validation.ErrorColumnType
+
+	// ErrorRowCount indicates row count is outside expected range
+	ErrorRowCount = validation.ErrorRowCount
+
+	// ErrorColumnCount indicates column count is below minimum
+	ErrorColumnCount = validation.ErrorColumnCount
+
+	// ErrorCustomValidation indicates custom validation failed
+	ErrorCustomValidation = validation.ErrorCustomValidation
+)
+
+// TypeStrictness values for template validation
+const (
+	// TypeStrictnessLenient requires 50% of column values to match type
+	TypeStrictnessLenient = 0
+
+	// TypeStrictnessModerate requires 80% of column values to match type
+	TypeStrictnessModerate = 1
+
+	// TypeStrictnessStrict requires all column values to match type
+	TypeStrictnessStrict = 2
 )
 
 // Sentinel errors for common failure cases
@@ -421,4 +491,86 @@ func containsHelper(s, substr string) bool {
 		}
 	}
 	return false
+}
+
+// --- Template Validation Functions ---
+
+// ValidateTemplate validates a workbook against a template definition.
+// If the workbook structure matches the expected template, the result is valid.
+// Use the Template struct or NewTemplate builder to define expectations.
+//
+// Example:
+//
+//	template := goxcel.NewTemplate().
+//	    RequireSheets("Sales", "Inventory").
+//	    WithSchema("Sales", goxcel.NewSchema().
+//	        RequireColumns("ID", "Product", "Price").
+//	        WithColumnTypes(map[string]goxcel.CellType{
+//	            "ID":    goxcel.CellTypeNumber,
+//	            "Price": goxcel.CellTypeNumber,
+//	        }).
+//	        Build()).
+//	    Build()
+//
+//	result := goxcel.ValidateTemplate(workbook, template)
+//	if !result.Valid {
+//	    for _, err := range result.Errors {
+//	        fmt.Printf("Error: %s\n", err.Message)
+//	    }
+//	}
+func ValidateTemplate(workbook *Workbook, template Template) *TemplateResult {
+	return validation.ValidateTemplate(workbook, template)
+}
+
+// NewTemplate creates a new TemplateBuilder for fluent template construction.
+//
+// Example:
+//
+//	template := goxcel.NewTemplate("MyTemplate").
+//	    RequireSheets("Sheet1", "Sheet2").
+//	    StrictSheets().
+//	    Build()
+func NewTemplate(name string) *TemplateBuilder {
+	return validation.NewTemplate(name)
+}
+
+// NewSchema creates a new SchemaBuilder for fluent schema construction.
+//
+// Example:
+//
+//	schema := goxcel.NewSchema().
+//	    RequireColumns("ID", "Name", "Email").
+//	    WithColumnTypes(map[string]goxcel.CellType{
+//	        "ID": goxcel.CellTypeNumber,
+//	    }).
+//	    StrictColumns(true).
+//	    Build()
+func NewSchema() *SchemaBuilder {
+	return validation.NewSchema()
+}
+
+// QuickValidate provides a simple way to validate required columns in the first sheet.
+// For more complex validation, use ValidateTemplate with a full Template struct.
+//
+// Example:
+//
+//	result := goxcel.QuickValidate(workbook, "ID", "Name", "Email")
+//	if !result.Valid {
+//	    fmt.Println("Validation failed:", result.Errors)
+//	}
+func QuickValidate(workbook *Workbook, requiredColumns ...string) *TemplateResult {
+	return validation.QuickValidate(workbook, requiredColumns...)
+}
+
+// ValidateColumns validates that a table has the required columns.
+// Returns a slice of missing column names.
+//
+// Example:
+//
+//	missing := goxcel.ValidateColumns(table, "ID", "Name", "Email")
+//	if len(missing) > 0 {
+//	    fmt.Println("Missing columns:", missing)
+//	}
+func ValidateColumns(table *Table, requiredColumns ...string) []string {
+	return validation.ValidateColumns(table, requiredColumns...)
 }
