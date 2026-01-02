@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"excel-lite/pkg/export"
-	"excel-lite/pkg/models"
-	"excel-lite/pkg/reader"
+	"goxcel/pkg/export"
+	"goxcel/pkg/models"
+	"goxcel/pkg/reader"
 )
 
 // CLI options
@@ -125,9 +125,9 @@ func parseFlags() options {
 }
 
 func printUsage() {
-	fmt.Println("excel-lite - Dynamic Excel Table Reader")
+	fmt.Println("goxcel - Dynamic Excel Table Reader")
 	fmt.Println()
-	fmt.Println("Usage: excel-lite [options] <file.xlsx>")
+	fmt.Println("Usage: goxcel [options] <file.xlsx>")
 	fmt.Println()
 	fmt.Println("Options:")
 	fmt.Println("  -f, --format <format>    Output format: json, csv, sql, text (default: text)")
@@ -141,12 +141,12 @@ func printUsage() {
 	fmt.Println("      --no-headers         Exclude headers from CSV output")
 	fmt.Println()
 	fmt.Println("Examples:")
-	fmt.Println("  excel-lite data.xlsx")
-	fmt.Println("  excel-lite data.xlsx --format=json --pretty")
-	fmt.Println("  excel-lite data.xlsx -f csv -o output.csv")
-	fmt.Println("  excel-lite data.xlsx --sheet=Sales --columns=Name,Amount")
-	fmt.Println("  excel-lite data.xlsx -f sql --sql-table=users")
-	fmt.Println("  excel-lite data.xlsx --summary")
+	fmt.Println("  goxcel data.xlsx")
+	fmt.Println("  goxcel data.xlsx --format=json --pretty")
+	fmt.Println("  goxcel data.xlsx -f csv -o output.csv")
+	fmt.Println("  goxcel data.xlsx --sheet=Sales --columns=Name,Amount")
+	fmt.Println("  goxcel data.xlsx -f sql --sql-table=users")
+	fmt.Println("  goxcel data.xlsx --summary")
 }
 
 func filterTables(wb *models.Workbook, opts options) []*models.Table {

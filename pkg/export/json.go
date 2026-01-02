@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"io"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // JSONOptions holds JSON-specific export options

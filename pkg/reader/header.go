@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // HeaderDetector identifies header rows in tables

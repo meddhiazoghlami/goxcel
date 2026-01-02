@@ -5,7 +5,7 @@ import (
 	"regexp"
 	"strings"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // ValidationRule defines validation criteria for a column

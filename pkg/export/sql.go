@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // SQLDialect represents different SQL database dialects

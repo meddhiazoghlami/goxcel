@@ -1,4 +1,4 @@
-# Excel-Lite
+# Goxcel
 
 A lightweight, high-performance Go library for reading Excel files (.xlsx) with automatic table detection and intelligent data extraction.
 
@@ -8,7 +8,7 @@ A lightweight, high-performance Go library for reading Excel files (.xlsx) with 
 
 ## Overview
 
-Excel-Lite automatically detects and extracts tabular data from Excel spreadsheets without requiring predefined schemas or manual range specifications. It intelligently identifies table boundaries, headers, and data types, making it ideal for processing Excel files with unknown or dynamic structures.
+Goxcel automatically detects and extracts tabular data from Excel spreadsheets without requiring predefined schemas or manual range specifications. It intelligently identifies table boundaries, headers, and data types, making it ideal for processing Excel files with unknown or dynamic structures.
 
 ## Features
 
@@ -32,7 +32,7 @@ Excel-Lite automatically detects and extracts tabular data from Excel spreadshee
 ## Installation
 
 ```bash
-go get github.com/yourusername/excel-lite
+go get github.com/yourusername/goxcel
 ```
 
 ## Quick Start
@@ -44,7 +44,7 @@ package main
 
 import (
     "fmt"
-    "excel-lite/pkg/reader"
+    "goxcel/pkg/reader"
 )
 
 func main() {
@@ -79,7 +79,7 @@ func main() {
 ### Export to JSON
 
 ```go
-import "excel-lite/pkg/export"
+import "goxcel/pkg/export"
 
 // Simple export
 jsonStr, err := export.ToJSON(table)
@@ -96,7 +96,7 @@ result, err := exporter.ExportString(table)
 ### Export to CSV
 
 ```go
-import "excel-lite/pkg/export"
+import "goxcel/pkg/export"
 
 // Simple export
 csvStr, err := export.ToCSV(table)
@@ -113,7 +113,7 @@ result, err := exporter.ExportString(table)
 ### Export to SQL
 
 ```go
-import "excel-lite/pkg/export"
+import "goxcel/pkg/export"
 
 // Simple export
 sqlStr, err := export.ToSQL(table, "users")
@@ -132,7 +132,7 @@ result, err := exporter.ExportString(table)
 ### Excel Date Conversion
 
 ```go
-import "excel-lite/pkg/dateutil"
+import "goxcel/pkg/dateutil"
 
 // Convert Excel serial date to Go time.Time
 // Serial 45658 = January 1, 2025
@@ -359,7 +359,7 @@ Excel date conversion utilities.
 Validate table data against defined rules.
 
 ```go
-import "excel-lite/pkg/validation"
+import "goxcel/pkg/validation"
 
 // Using the fluent RuleBuilder API
 rules := []validation.ValidationRule{
@@ -399,7 +399,7 @@ byRow := result.ErrorsByRow()
 Read Excel named ranges directly as tables.
 
 ```go
-import "excel-lite/pkg/reader"
+import "goxcel/pkg/reader"
 
 // Create a named range reader
 nr := reader.NewNamedRangeReader()
@@ -428,31 +428,31 @@ fmt.Printf("Sheet: %s, Start: %s, End: %s\n", info.SheetName, info.StartCell, in
 
 ```bash
 # Build the CLI
-go build -o excel-lite ./cmd/main.go
+go build -o goxcel ./cmd/main.go
 
 # Read and analyze an Excel file
-./excel-lite data.xlsx
+./goxcel data.xlsx
 
 # Export to JSON (pretty printed)
-./excel-lite -f json --pretty data.xlsx
+./goxcel -f json --pretty data.xlsx
 
 # Export to CSV
-./excel-lite -f csv -o output.csv data.xlsx
+./goxcel -f csv -o output.csv data.xlsx
 
 # Export to SQL
-./excel-lite -f sql --sql-table=users data.xlsx
+./goxcel -f sql --sql-table=users data.xlsx
 
 # Filter by sheet name
-./excel-lite -s Sales data.xlsx
+./goxcel -s Sales data.xlsx
 
 # Filter by table name
-./excel-lite -t Sales_Table1 data.xlsx
+./goxcel -t Sales_Table1 data.xlsx
 
 # Select specific columns
-./excel-lite -f csv -c "Name,Email,Age" data.xlsx
+./goxcel -f csv -c "Name,Email,Age" data.xlsx
 
 # Quick summary with column type analysis
-./excel-lite --summary data.xlsx
+./goxcel --summary data.xlsx
 ```
 
 ### CLI Options

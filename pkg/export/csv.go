@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // CSVOptions holds CSV-specific export options

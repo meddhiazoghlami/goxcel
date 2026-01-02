@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 
 	"github.com/xuri/excelize/v2"
 )

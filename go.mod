@@ -1,4 +1,4 @@
-module excel-lite
+module goxcel
 
 go 1.25.5
 

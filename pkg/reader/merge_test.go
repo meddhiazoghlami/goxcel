@@ -1,7 +1,7 @@
 package reader
 
 import (
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 	"testing"
 )
 

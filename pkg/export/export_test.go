@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // Helper function to create a test table

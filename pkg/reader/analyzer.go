@@ -1,7 +1,7 @@
 package reader
 
 import (
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // TableAnalyzer detects table boundaries within a sheet

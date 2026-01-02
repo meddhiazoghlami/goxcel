@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // WorkbookReader is the main entry point for reading Excel files

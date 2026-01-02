@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"io"
 
-	"excel-lite/pkg/models"
+	"goxcel/pkg/models"
 )
 
 // Format represents the export format type
